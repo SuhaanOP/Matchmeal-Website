@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Bar</Navigation-bar></title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <img class="logo" src="../static/images/logo.png" alt="logo">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#how-to-use">How to Use</a></li>
+                <li><a href="#footer">Contact us</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="#how-to-use"><button>Get started</button></a>
+    </header>
+    <div class="content">
+        <h1>Find <span>Recipes</span> according to<br>the ingredients you have.</h1>
+        <form id="search-bar" action="/predict" method="post">
+            <input type="text" name = "ingredients" placeholder="Bread,milk,eggs">
+            <button class="cta">Search</button>
+        </form>
+    </div>
+    <section id="how-to-use">
+        <h1>How to Use</h1>
+        <h3>This video shows you how you can use Matchmeal.</h3>
+        <div class ="video-container">
+            <video controls>
+                <source src="../static/how_to_use.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".nav-links li a[href='#how-to-use']").addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector("#how-to-use").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+    </script>
+    <div id = "footer" class="footercontainer">
+        <div class="socialicons">
+            <a href="https://www.instagram.com/suh4an.xd/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com/suhaan27" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/mohammad-suhaan-haq-680315311/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="footernav">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                    <a href="mailto:sufyan12312345007@gmail.com">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footerbottom">
+        <p>Hey guys Matchmeal is Designed by me <span class="designer">Suhaan</span> and
+        if you face any problem in using Matchmeal just dm me on my Socials :D</p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".nav-links li a[href='#how-to-use']").addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector("#how-to-use").scrollIntoView({ behavior: "smooth" });
+            });
+            document.querySelector(".nav-links li a[href='#footer']").addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector("#footer").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to handle smooth scrolling with offset adjustment
+            function smoothScrollWithOffset(targetId, offset = 0) {
+                var targetElement = document.querySelector(targetId);
+                var elementPosition = targetElement.getBoundingClientRect().top;
+                var offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+    
+            // Get Started button scroll
+            document.querySelector("a.cta[href='#how-to-use']").addEventListener("click", function(e) {
+                e.preventDefault();
+                smoothScrollWithOffset("#how-to-use", 30); // Adjust the offset value as needed
+            });
+    
+            // Contact us link scroll
+            document.querySelector(".nav-links li a[href='#footer']").addEventListener("click", function(e) {
+                e.preventDefault();
+                smoothScrollWithOffset("#footer", 50); // Adjust the offset value as needed
+            });
+        });
+    </script>
+</body>
+</html>

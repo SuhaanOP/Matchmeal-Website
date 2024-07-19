@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Result</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header>
+        <img class="logo" src="../static/images/logo.png" alt="logo">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">How to Use</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="/"><button>Regenerate</button></a>
+    </header>
+    <div class="response_content">
+       <!-- <div class="input-box" id="userInputBox">
+            {{ user_input }}
+        </div>
+         -->
+        <h1>Recommended <span>Recipe :</span></h1>
+        <div class = "response_box" id="response">
+            {{ result|safe }}
+        </div>
+    </div>
+</body>
+</html>
