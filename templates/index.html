@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matchmeal</title>
-        <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-64HC6VY2J3"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -31,16 +31,16 @@
     <div class="content">
         <h1>Find <span>Recipes</span> according to<br>the ingredients you have.</h1>
         <form id="search-bar" action="/predict" method="post">
-            <input type="text" name = "ingredients" placeholder="Bread,milk,eggs">
+            <input type="text" name="ingredients" placeholder="Bread,milk,eggs">
             <button class="cta">Search</button>
         </form>
     </div>
     <section id="how-to-use">
         <h1>How to Use</h1>
         <h3>This video shows you how you can use Matchmeal.</h3>
-        <div class ="video-container">
-            <video controls>
-                <source src="../static/how_to_use.mp4" type="video/mp4">
+        <div class="video-container">
+            <video id="howToUseVideo" controls>
+                <source data-src="../static/how_to_use.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -51,9 +51,55 @@
                 e.preventDefault();
                 document.querySelector("#how-to-use").scrollIntoView({ behavior: "smooth" });
             });
+            document.querySelector(".nav-links li a[href='#footer']").addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector("#footer").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById("howToUseVideo");
+            const videoSrc = video.querySelector("source").getAttribute("data-src");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.querySelector("source").setAttribute("src", videoSrc);
+                        video.load();
+                        observer.unobserve(video);
+                    }
+                });
+            });
+
+            observer.observe(video);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to handle smooth scrolling with offset adjustment
+            function smoothScrollWithOffset(targetId, offset = 0) {
+                var targetElement = document.querySelector(targetId);
+                var elementPosition = targetElement.getBoundingClientRect().top;
+                var offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+
+            // Get Started button scroll
+            document.querySelector("a.cta[href='#how-to-use']").addEventListener("click", function(e) {
+                e.preventDefault();
+                smoothScrollWithOffset("#how-to-use", 30); // Adjust the offset value as needed
+            });
+
+            // Contact us link scroll
+            document.querySelector(".nav-links li a[href='#footer']").addEventListener("click", function(e) {
+                e.preventDefault();
+                smoothScrollWithOffset("#footer", 50); // Adjust the offset value as needed
+            });
         });
     </script>
-    <div id = "footer" class="footercontainer">
+    <div id="footer" class="footercontainer">
         <div class="socialicons">
             <a href="https://www.instagram.com/suh4an.xd/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://twitter.com/suhaan27" target="_blank"><i class="fa-brands fa-twitter"></i></a>
@@ -72,43 +118,5 @@
         <p>Hey guys Matchmeal is Designed by me <span class="designer">Suhaan</span> and
         if you face any problem in using Matchmeal just dm me on my Socials :D</p>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector(".nav-links li a[href='#how-to-use']").addEventListener("click", function(e) {
-                e.preventDefault();
-                document.querySelector("#how-to-use").scrollIntoView({ behavior: "smooth" });
-            });
-            document.querySelector(".nav-links li a[href='#footer']").addEventListener("click", function(e) {
-                e.preventDefault();
-                document.querySelector("#footer").scrollIntoView({ behavior: "smooth" });
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Function to handle smooth scrolling with offset adjustment
-            function smoothScrollWithOffset(targetId, offset = 0) {
-                var targetElement = document.querySelector(targetId);
-                var elementPosition = targetElement.getBoundingClientRect().top;
-                var offsetPosition = elementPosition + window.pageYOffset - offset;
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-    
-            // Get Started button scroll
-            document.querySelector("a.cta[href='#how-to-use']").addEventListener("click", function(e) {
-                e.preventDefault();
-                smoothScrollWithOffset("#how-to-use", 30); // Adjust the offset value as needed
-            });
-    
-            // Contact us link scroll
-            document.querySelector(".nav-links li a[href='#footer']").addEventListener("click", function(e) {
-                e.preventDefault();
-                smoothScrollWithOffset("#footer", 50); // Adjust the offset value as needed
-            });
-        });
-    </script>
 </body>
 </html>
